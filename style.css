@@ -24,7 +24,7 @@ body {
     justify-content: flex-start;
 }
 
-#vidas {
+#containerVidas {
     display: flex;
 }
 
@@ -39,6 +39,17 @@ body {
     background-size: 30dvw;
 }
 
+.coracoes_vazio {
+    width: 5dvw;
+    height: 15dvh;
+    background-image: url('./img/vidaVazia.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 0;
+    margin: 0;
+    background-size: 30dvw;
+}
+
 #fundo_cima {
     height: 50dvh;
     width: 100%;
@@ -46,14 +57,14 @@ body {
 
 #fundo_baixo {
     height: 50dvh;
-    width: 100%;    
+    width: 100%;
     background-image: url(./img/fundoGrama.svg);
     background-position: center;
     background-repeat: repeat-x;
     background-size: 50dvw;
 }
 
-#personagem{
+#personagem {
     width: 8%;
     height: 20dvh;
     position: absolute;
@@ -64,4 +75,48 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 50dvw;
+}
+
+#questao {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#tempo {
+    font-size: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#opcoes {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    height: 30dvh;
+}
+
+#container_opcoes {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.opcao {
+    width: 30%;
+    height: 20dvh;
+    display: flex;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 10px solid cadetblue;
 }

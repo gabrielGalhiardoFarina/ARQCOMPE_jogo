@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
     <div id="painel_vida" aria-label="Painel de vida">
-        <div id="vidas" aria-label="3 vidas cheias">
+        <div id="containerVidas">
             <div class="coracoes_vida"></div>
             <div class="coracoes_vida"></div>
             <div class="coracoes_vida"></div>
@@ -20,6 +22,19 @@
         <div id="fundo_baixo"></div>
         <div id="personagem"></div>
     </div>
+
+    <div id="questao" style="display: none;">
+        <p id="tempo">5.00</p>
+        <p id="pergunta">Qual é o componente de hardware responsável por armazenar dados temporariamente durante a execução de programas?</p>
+    </div>
+    <div id="opcoes" style="display: none;">
+        <div id="container_opcoes">
+            <img src="./img/fotosQuestoes/cpu.jpg" alt="Opção 1" class="opcao" id="opcao1">
+            <img src="./img/fotosQuestoes/dualCor.jpg" alt="Opção 2" class="opcao" id="opcao2">
+            <img src="./img/fotosQuestoes/ram.png" alt="Opção 3" class="opcao" id="opcao3">
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
+
 </html>
