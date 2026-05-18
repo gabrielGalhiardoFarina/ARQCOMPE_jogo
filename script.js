@@ -58,7 +58,7 @@ let direcao = 'direita';
 
 personagem.style.left = porcentagemTela + '%';
 
-let musicaFundo = new Audio('/sons/musicaDeFundo.mp3');
+let musicaFundo = new Audio('./sons/musicaDeFundo.mp3');
 musicaFundo.loop = true;
 let musicaJaComecou = false;
 
@@ -211,7 +211,7 @@ function abrirParedeProxima() {
     }, 100);
 }
 
-let efeitoGanhou = new Audio('/sons/ganhou.mp3');
+let efeitoGanhou = new Audio('./sons/ganhou.mp3');
 function proximaQuestao() {
     questaoAtual++;
     margem = 5;
@@ -243,7 +243,7 @@ function proximaQuestao() {
     }
 }
 
-let efeitoPerdeu = new Audio('/sons/perdeu.mp3');
+let efeitoPerdeu = new Audio('./sons/perdeu.mp3');
 function animacaoPerdeu() {
     let tamanhoPulo = 12;
     let subindo = true;
