@@ -13,7 +13,7 @@ let jsonQuestoes = [
             "./img/fotosQuestoes/ram.png"
         ],
         "respostaCorreta": 2,
-        "tempo": 1.00
+        "tempo": 5.00
     },
     {
         "pergunta": "Qual componente é responsável por processar as informações em um computador?",
@@ -23,7 +23,7 @@ let jsonQuestoes = [
             "./img/fotosQuestoes/dualCore.jpg"
         ],
         "respostaCorreta": 2,
-        "tempo": 1.00
+        "tempo": 5.00
     },
     {
         "pergunta": "Qual é a função de uma placa de vídeo em um computador?",
@@ -33,7 +33,7 @@ let jsonQuestoes = [
             "./img/fotosQuestoes/ram.png"
         ],
         "respostaCorreta": 2,
-        "tempo": 1.00
+        "tempo": 5.00
     },
     {
         "pergunta": "Qual componente é responsável por processar as informações em um computador?",
@@ -43,7 +43,7 @@ let jsonQuestoes = [
             "./img/fotosQuestoes/dualCore.jpg"
         ],
         "respostaCorreta": 2,
-        "tempo": 10.00
+        "tempo": 5.00
     }
 ];
 
@@ -107,7 +107,7 @@ setInterval(function () {
         questaoAtiva = true;
     }
 
-    
+
 
 }, 16);
 
@@ -238,26 +238,26 @@ function proximaQuestao() {
         questaoAtiva = false;
         parede_proxima.style.display = 'none';
         console.log("Parabens voce venceu, Fim do jogo!");
-
+        ganharJogo();
         return;
     }
 }
 
 let efeitoPerdeu = new Audio('/sons/perdeu.mp3');
 function animacaoPerdeu() {
-    let pulinho = 12;
+    let tamanhoPulo = 12;
     let subindo = true;
 
     const loop = setInterval(() => {
         if (subindo) {
-            pulinho += 2;
-            if (pulinho >= 35) {
+            tamanhoPulo += 2;
+            if (tamanhoPulo >= 35) {
                 subindo = false;
             }
         } else {
-            pulinho -= 3;
+            tamanhoPulo -= 3;
             efeitoPerdeu.play();
-            if (pulinho <= -20) {
+            if (tamanhoPulo <= -20) {
                 clearInterval(loop);
                 setTimeout(() => {
                     location.reload();
@@ -265,6 +265,35 @@ function animacaoPerdeu() {
             }
         }
 
-        personagem.style.bottom = pulinho + 'dvh';
+        personagem.style.bottom = tamanhoPulo + 'dvh';
     }, 70);
+}
+
+function ganharJogo() {
+    let tamanhoPulo = 12;
+    let subindo = true;
+    let numerosPulos = 0;
+
+
+    const loop = setInterval(() => {
+        if (subindo) {
+            tamanhoPulo += 2;
+            if (tamanhoPulo >= 35) {
+                subindo = false;
+            }
+        } else {
+            tamanhoPulo -= 3;
+            if (tamanhoPulo <= 12) {
+                tamanhoPulo = 12;
+                subindo = true;
+                numerosPulos++;
+            }
+        }
+        if (numerosPulos >= 6) {
+            clearInterval(loop);
+        }
+            
+
+        personagem.style.bottom = tamanhoPulo + 'dvh';
+    }, 30);
 }
