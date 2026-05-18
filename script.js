@@ -2,7 +2,50 @@ let velocidade = 0.6;
 let margem = 5;
 let questaoAtiva = false;
 let vidas = 3;
+let questaoAtual = 0;
 
+let jsonQuestoes = [
+    {
+        "pergunta": "Qual é a função da memória RAM em um computador?",
+        "opcoes": [
+            "./img/fotosQuestoes/hd.png",
+            "./img/fotosQuestoes/placa_video.png",
+            "./img/fotosQuestoes/ram.png"
+        ],
+        "respostaCorreta": 2,
+        "tempo": 1.00
+    },
+    {
+        "pergunta": "Qual componente é responsável por processar as informações em um computador?",
+        "opcoes": [
+            "./img/fotosQuestoes/cpu.jpg",
+            "./img/fotosQuestoes/ram.png",
+            "./img/fotosQuestoes/dualCore.jpg"
+        ],
+        "respostaCorreta": 2,
+        "tempo": 3.00
+    },
+    {
+        "pergunta": "Qual é a função de uma placa de vídeo em um computador?",
+        "opcoes": [
+            "./img/fotosQuestoes/cpu.jpg",
+            "./img/fotosQuestoes/dualCore.jpg",
+            "./img/fotosQuestoes/ram.png"
+        ],
+        "respostaCorreta": 2,
+        "tempo": 3.00
+    },
+    {
+        "pergunta": "Qual componente é responsável por processar as informações em um computador?",
+        "opcoes": [
+            "./img/fotosQuestoes/cpu.jpg",
+            "./img/fotosQuestoes/ram.png",
+            "./img/fotosQuestoes/dualCore.jpg"
+        ],
+        "respostaCorreta": 2,
+        "tempo": 10.00
+    }
+];
 
 let tecla = {
     a: false,
@@ -47,9 +90,9 @@ setInterval(function () {
     }
 
     personagem.style.left = porcentagemTela + '%';
-    personagem.style.backgroundImage = direcao === 'esquerda'
-        ? 'url(./img/spritesPersonagens/esquerdaParado.svg)'
-        : 'url(./img/spritesPersonagens/direitaParado.svg)';
+
+    personagem.style.backgroundImage =
+        (direcao == 'esquerda' ? 'url(./img/spritesPersonagens/esquerdaParado.svg)' : 'url(./img/spritesPersonagens/direitaParado.svg)');
 
     if (porcentagemTela > 44) {
         questaoAtiva = true;
@@ -63,13 +106,14 @@ function mostrarQuestao() {
         opcoes.style.display = 'block';
     } else {
         questao.style.display = 'none';
+        opcoes.style.display = 'none';
+
     }
 }
 
-setInterval(mostrarQuestao, 100);
+let mostrandoQuestao = setInterval(mostrarQuestao, 100);
 
 let opcaoEscolhida = 0;
-let respostaCorreta = 3;
 
 function atualizarTempo() {
     if (questaoAtiva) {
@@ -96,26 +140,40 @@ function atualizarTempo() {
         } else {
             tempo.textContent = '0.00';
 
-            opcao1.style.borderColor = 'red';
-            opcao2.style.borderColor = 'red';
-            opcao3.style.borderColor = 'green';
+            opcao1.style.borderColor = jsonQuestoes[questaoAtual].respostaCorreta === 1 ? 'green' : 'red';
+            opcao2.style.borderColor = jsonQuestoes[questaoAtual].respostaCorreta === 2 ? 'green' : 'red';
+            opcao3.style.borderColor = jsonQuestoes[questaoAtual].respostaCorreta === 3 ? 'green' : 'red';
 
-            if (opcaoEscolhida != respostaCorreta) {
+            if (opcaoEscolhida != jsonQuestoes[questaoAtual].respostaCorreta) {
                 perdeuVida = true;
                 clearInterval(animacaoTempo);
+                clearInterval(mostrandoQuestao);
             }
+            rodadaAtiva = true;
         }
     }
 }
+
+let rodadaAtiva = false;
 let animacaoTempo = setInterval(atualizarTempo, 30);
 
 let perdeuVida = false;
+let proximaAtiva = false;
 function atualizarVidas() {
-    if (perdeuVida) {
-        vidas--;
-        perdeuVida = false;
+    if (rodadaAtiva) {
+        if (perdeuVida) {
+            vidas--;
+            perdeuVida = false;
+        }
+        if (vidas <= 0) {
+            console.log("Game Over!");
+            setTimeout(animacaoPerdeu, 1000);
+            clearInterval(intervaloVidas);
+        } else {
+            console.log("Vidas restantes: " + vidas);
+            abrirParedeProxima();
+        }
     }
-
     let qtdVidas = "";
     for (let i = 0; i < vidas; i++) {
         qtdVidas += '<div class="coracoes_vida"></div>';
@@ -126,4 +184,69 @@ function atualizarVidas() {
     containerVidas.innerHTML = qtdVidas;
 }
 
-setInterval(atualizarVidas, 1000);
+let intervaloVidas = setInterval(atualizarVidas, 1000);
+
+let verificarProximo;
+let ativarProximaQuestao = false;
+function abrirParedeProxima() {
+    parede_proxima.style.display = 'block';
+    verificarProximo = setInterval(function () {
+        if (porcentagemTela > 90) {
+            clearInterval(verificarProximo);
+            ativarProximaQuestao = true;
+            rodadaAtiva = false;
+            proximaQuestao();
+        }
+    }, 100);
+}
+
+function proximaQuestao() {
+    questaoAtual++;
+    margem = 5;
+    porcentagemTela = margem;
+    clearInterval(verificarProximo);
+
+    if (questaoAtual < jsonQuestoes.length) {
+        questaoAtiva = false;
+
+        tempo.textContent = jsonQuestoes[questaoAtual].tempo.toFixed(2);
+
+        pergunta.textContent = jsonQuestoes[questaoAtual].pergunta;
+
+        opcao1.src = jsonQuestoes[questaoAtual].opcoes[0];
+        opcao2.src = jsonQuestoes[questaoAtual].opcoes[1];
+        opcao3.src = jsonQuestoes[questaoAtual].opcoes[2];
+
+        parede_proxima.style.display = 'none';
+        mostrandoQuestao = setInterval(mostrarQuestao, 100);
+        animacaoTempo = setInterval(atualizarTempo, 30);
+
+    } else {    
+        console.log("Parabens voce venceu, Fim do jogo!");
+        return;
+    }
+}
+
+function animacaoPerdeu() {
+    let pulinho = 12;
+    let subindo = true;
+
+    const loop = setInterval(() => {
+        if (subindo) {
+            pulinho += 2;
+            if (pulinho >= 35) {
+                subindo = false;
+            }
+        } else {
+            pulinho -= 3;
+            if (pulinho <= -20) {
+                clearInterval(loop);
+                setTimeout(() => {
+                    location.reload();
+                }, 1500);
+            }
+        }
+
+        personagem.style.bottom = pulinho + 'dvh';
+    }, 70); 
+}

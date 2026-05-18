@@ -87,7 +87,6 @@ body {
 }
 
 #tempo {
-    font-size: 0.5em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -119,4 +118,17 @@ body {
     background-position: center;
     background-size: contain;
     border: 10px solid cadetblue;
+}
+
+#parede_proxima{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 7%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
 }
