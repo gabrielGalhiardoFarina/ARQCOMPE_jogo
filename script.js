@@ -23,7 +23,7 @@ let jsonQuestoes = [
             "./img/fotosQuestoes/dualCore.jpg"
         ],
         "respostaCorreta": 2,
-        "tempo": 3.00
+        "tempo": 1.00
     },
     {
         "pergunta": "Qual é a função de uma placa de vídeo em um computador?",
@@ -33,7 +33,7 @@ let jsonQuestoes = [
             "./img/fotosQuestoes/ram.png"
         ],
         "respostaCorreta": 2,
-        "tempo": 3.00
+        "tempo": 1.00
     },
     {
         "pergunta": "Qual componente é responsável por processar as informações em um computador?",
@@ -58,7 +58,16 @@ let direcao = 'direita';
 
 personagem.style.left = porcentagemTela + '%';
 
+let musicaFundo = new Audio('/sons/musicaDeFundo.mp3');
+musicaFundo.loop = true;
+let musicaJaComecou = false;
+
 document.addEventListener('keydown', function (evento) {
+    if (musicaJaComecou === false) {
+        musicaFundo.play();
+        musicaJaComecou = true;
+    }
+
     if (evento.key === 'a' || evento.key === 'A') {
         tecla.a = true;
     }
@@ -94,9 +103,11 @@ setInterval(function () {
     personagem.style.backgroundImage =
         (direcao == 'esquerda' ? 'url(./img/spritesPersonagens/esquerdaParado.svg)' : 'url(./img/spritesPersonagens/direitaParado.svg)');
 
-    if (porcentagemTela > 44) {
+    if (porcentagemTela > 44 && questaoAtual < jsonQuestoes.length) {
         questaoAtiva = true;
     }
+
+    
 
 }, 16);
 
@@ -200,6 +211,7 @@ function abrirParedeProxima() {
     }, 100);
 }
 
+let efeitoGanhou = new Audio('/sons/ganhou.mp3');
 function proximaQuestao() {
     questaoAtual++;
     margem = 5;
@@ -221,12 +233,17 @@ function proximaQuestao() {
         mostrandoQuestao = setInterval(mostrarQuestao, 100);
         animacaoTempo = setInterval(atualizarTempo, 30);
 
-    } else {    
+    } else {
+        efeitoGanhou.play();
+        questaoAtiva = false;
+        parede_proxima.style.display = 'none';
         console.log("Parabens voce venceu, Fim do jogo!");
+
         return;
     }
 }
 
+let efeitoPerdeu = new Audio('/sons/perdeu.mp3');
 function animacaoPerdeu() {
     let pulinho = 12;
     let subindo = true;
@@ -239,14 +256,15 @@ function animacaoPerdeu() {
             }
         } else {
             pulinho -= 3;
+            efeitoPerdeu.play();
             if (pulinho <= -20) {
                 clearInterval(loop);
                 setTimeout(() => {
                     location.reload();
-                }, 1500);
+                }, 2000);
             }
         }
 
         personagem.style.bottom = pulinho + 'dvh';
-    }, 70); 
+    }, 70);
 }
