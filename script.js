@@ -2,7 +2,7 @@ let velocidade = 0.6;
 let margem = 5;
 let questaoAtiva = false;
 let vidas = 3;
-let questaoAtual = 14;
+let questaoAtual = 0;
 
 let jsonQuestoes = [
     {
