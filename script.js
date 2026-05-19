@@ -2,48 +2,168 @@ let velocidade = 0.6;
 let margem = 5;
 let questaoAtiva = false;
 let vidas = 3;
-let questaoAtual = 0;
+let questaoAtual = 14;
 
 let jsonQuestoes = [
     {
-        "pergunta": "Qual é a função da memória RAM em um computador?",
+        "pergunta": "Qual é a unidade central de processamento para o computador poder fazer os processamentos?",
         "opcoes": [
-            "./img/fotosQuestoes/hd.png",
-            "./img/fotosQuestoes/placa_video.png",
-            "./img/fotosQuestoes/ram.png"
+            "./img/fotosQuestoes/ula.png",
+            "./img/fotosQuestoes/cpu.jpg",
+            "./img/fotosQuestoes/dma.jpg"
         ],
-        "respostaCorreta": 2,
-        "tempo": 5.00
+        "respostaCorreta": 1,
+        "tempo": 10.00
     },
     {
-        "pergunta": "Qual componente é responsável por processar as informações em um computador?",
+        "pergunta": "Qual parte do computador executa operações de cálculos matemáticos e lógicos?",
         "opcoes": [
-            "./img/fotosQuestoes/cpu.jpg",
             "./img/fotosQuestoes/ram.png",
+            "./img/fotosQuestoes/rom.jpg",
+            "./img/fotosQuestoes/ula.png"
+        ],
+        "respostaCorreta": 2,
+        "tempo": 8.00
+    },
+    {
+        "pergunta": "Qual é o tipo de memória minúscula e ultrarrápida que guarda dados temporários dentro da CPU?",
+        "opcoes": [
+            "./img/fotosQuestoes/registradores.png",
+            "./img/fotosQuestoes/flash.jpg",
+            "./img/fotosQuestoes/eprom.webp"
+        ],
+        "respostaCorreta": 0,
+        "tempo": 7.00
+    },
+    {
+        "pergunta": "Qual memória temporária armazena os dados apenas enquanto o computador está ligado?",
+        "opcoes": [
+            "./img/fotosQuestoes/rom.jpg",
+            "./img/fotosQuestoes/ram.png",
+            "./img/fotosQuestoes/memoriaDeMassa.png"
+        ],
+        "respostaCorreta": 1,
+        "tempo": 6.00
+    },
+    {
+        "pergunta": "Qual memória permanente guarda dados essenciais para o funcionamento, como o BIOS?",
+        "opcoes": [
+            "./img/fotosQuestoes/rom.jpg",
+            "./img/fotosQuestoes/flash.jpg",
+            "./img/fotosQuestoes/ram.png"
+        ],
+        "respostaCorreta": 0,
+        "tempo": 7.00
+    },
+    {
+        "pergunta": "Qual memória derivada da ROM pode ter seu conteúdo apagado por luz ultravioleta e reescrito?",
+        "opcoes": [
+            "./img/fotosQuestoes/flash.jpg",
+            "./img/fotosQuestoes/ram.png",
+            "./img/fotosQuestoes/eprom.webp"
+        ],
+        "respostaCorreta": 2,
+        "tempo": 7.00
+    },
+    {
+        "pergunta": "Qual memória não perde os dados, grava eletronicamente e é usada em pen drives?",
+        "opcoes": [
+            "./img/fotosQuestoes/flash.jpg",
+            "./img/fotosQuestoes/eprom.webp",
+            "./img/fotosQuestoes/rom.jpg"
+        ],
+        "respostaCorreta": 0,
+        "tempo": 6.00
+    },
+    {
+        "pergunta": "Qual memória armazena grandes volumes de dados de forma permanente?",
+        "opcoes": [
+            "./img/fotosQuestoes/ram.png",
+            "./img/fotosQuestoes/registradores.png",
+            "./img/fotosQuestoes/memoriaDeMassa.png"
+        ],
+        "respostaCorreta": 2,
+        "tempo": 8.00
+    },
+    {
+        "pergunta": "O que dá acesso direto à memória, economizando tempo e sem precisar da CPU?",
+        "opcoes": [
+            "./img/fotosQuestoes/cs.png",
+            "./img/fotosQuestoes/dma.jpg",
+            "./img/fotosQuestoes/adressBus.png"
+        ],
+        "respostaCorreta": 1,
+        "tempo": 7.00
+    },
+    {
+        "pergunta": "Qual pino de controle permite à CPU ativar um periférico ou chip específico?",
+        "opcoes": [
+            "./img/fotosQuestoes/cs.png",
+            "./img/fotosQuestoes/dataBus.png",
+            "./img/fotosQuestoes/dma.jpg"
+        ],
+        "respostaCorreta": 0,
+        "tempo": 9.00
+    },
+    {
+        "pergunta": "Qual barramento aponta de onde um dado vem ou para onde ele deve ser enviado?",
+        "opcoes": [
+            "./img/fotosQuestoes/dataBus.png",
+            "./img/fotosQuestoes/adressBus.png",
+            "./img/fotosQuestoes/cs.png"
+        ],
+        "respostaCorreta": 1,
+        "tempo": 6.00
+    },
+    {
+        "pergunta": "Por qual barramento a informação viaja depois que o local correto é apontado?",
+        "opcoes": [
+            "./img/fotosQuestoes/dataBus.png",
+            "./img/fotosQuestoes/adressBus.png",
+            "./img/fotosQuestoes/dma.jpg"
+        ],
+        "respostaCorreta": 0,
+        "tempo": 8.50
+    },
+    {
+        "pergunta": "Qual processador da Intel foi lançado em setembro de 2009?",
+        "opcoes": [
+            "./img/fotosQuestoes/i7.webp",
+            "./img/fotosQuestoes/i5.webp",
+            "./img/fotosQuestoes/dualCore.jpg"
+        ],
+        "respostaCorreta": 1,
+        "tempo": 7.00
+    },
+    {
+        "pergunta": "Qual processador da Intel lançado em 2008 lida com maestria com transmissões e jogos pesados?",
+        "opcoes": [
+            "./img/fotosQuestoes/i7.webp",
+            "./img/fotosQuestoes/i5.webp",
+            "./img/fotosQuestoes/quadCore.jpg"
+        ],
+        "respostaCorreta": 0,
+        "tempo": 8.00
+    },
+    {
+        "pergunta": "Como é chamado o processador que possui exatamente 2 núcleos físicos?",
+        "opcoes": [
+            "./img/fotosQuestoes/quadCore.jpg",
+            "./img/fotosQuestoes/i5.webp",
             "./img/fotosQuestoes/dualCore.jpg"
         ],
         "respostaCorreta": 2,
-        "tempo": 5.00
+        "tempo": 8.50
     },
     {
-        "pergunta": "Qual é a função de uma placa de vídeo em um computador?",
+        "pergunta": "Como é chamado o processador que possui exatamente 4 núcleos físicos?",
         "opcoes": [
-            "./img/fotosQuestoes/cpu.jpg",
+            "./img/fotosQuestoes/quadCore.jpg",
             "./img/fotosQuestoes/dualCore.jpg",
-            "./img/fotosQuestoes/ram.png"
+            "./img/fotosQuestoes/i7.webp"
         ],
-        "respostaCorreta": 2,
-        "tempo": 5.00
-    },
-    {
-        "pergunta": "Qual componente é responsável por processar as informações em um computador?",
-        "opcoes": [
-            "./img/fotosQuestoes/cpu.jpg",
-            "./img/fotosQuestoes/ram.png",
-            "./img/fotosQuestoes/dualCore.jpg"
-        ],
-        "respostaCorreta": 2,
-        "tempo": 5.00
+        "respostaCorreta": 0,
+        "tempo": 9.00
     }
 ];
 
@@ -135,28 +255,31 @@ function atualizarTempo() {
                 opcao1.style.borderColor = 'darkBlue';
                 opcao2.style.borderColor = 'cadetblue';
                 opcao3.style.borderColor = 'cadetblue';
-                opcaoEscolhida = 1;
+                opcaoEscolhida = 0;
             } else if (porcentagemTela >= 33 && porcentagemTela < 66) {
                 opcao1.style.borderColor = 'cadetblue';
                 opcao2.style.borderColor = 'darkBlue';
                 opcao3.style.borderColor = 'cadetblue';
-                opcaoEscolhida = 2;
+                opcaoEscolhida = 1;
             } else {
                 opcao1.style.borderColor = 'cadetblue';
                 opcao2.style.borderColor = 'cadetblue';
                 opcao3.style.borderColor = 'darkBlue';
-                opcaoEscolhida = 3;
+                opcaoEscolhida = 2;
             }
 
         } else {
             tempo.textContent = '0.00';
 
-            opcao1.style.borderColor = jsonQuestoes[questaoAtual].respostaCorreta === 1 ? 'green' : 'red';
-            opcao2.style.borderColor = jsonQuestoes[questaoAtual].respostaCorreta === 2 ? 'green' : 'red';
-            opcao3.style.borderColor = jsonQuestoes[questaoAtual].respostaCorreta === 3 ? 'green' : 'red';
+            opcao1.style.borderColor = jsonQuestoes[questaoAtual].respostaCorreta === 0 ? 'green' : 'red';
+            opcao2.style.borderColor = jsonQuestoes[questaoAtual].respostaCorreta === 1 ? 'green' : 'red';
+            opcao3.style.borderColor = jsonQuestoes[questaoAtual].respostaCorreta === 2 ? 'green' : 'red';
 
             if (opcaoEscolhida != jsonQuestoes[questaoAtual].respostaCorreta) {
                 perdeuVida = true;
+                clearInterval(animacaoTempo);
+                clearInterval(mostrandoQuestao);
+            } else {
                 clearInterval(animacaoTempo);
                 clearInterval(mostrandoQuestao);
             }
@@ -166,12 +289,13 @@ function atualizarTempo() {
 }
 
 let rodadaAtiva = false;
-let animacaoTempo = setInterval(atualizarTempo, 30);
+let animacaoTempo = setInterval(atualizarTempo, 10);
 
 let perdeuVida = false;
 let proximaAtiva = false;
 function atualizarVidas() {
     if (rodadaAtiva) {
+        rodadaAtiva = false;
         if (perdeuVida) {
             vidas--;
             perdeuVida = false;
@@ -292,8 +416,12 @@ function ganharJogo() {
         if (numerosPulos >= 6) {
             clearInterval(loop);
         }
-            
+
 
         personagem.style.bottom = tamanhoPulo + 'dvh';
     }, 30);
+
+    questao.style.display = 'none';
+    opcoes.style.display = 'none';
+
 }
