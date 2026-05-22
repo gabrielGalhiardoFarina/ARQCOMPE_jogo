@@ -169,22 +169,27 @@ let jsonQuestoes = [
 
 let cenarios = [
     {
+        corTexto: '#000000',
         corFundo: '#87CEEB',
         urlfundo: 'url(./img/cenarios/fundoGrama.svg)'
     },
     {
+        corTexto: '#000000',
         corFundo: '#01b7ff',
         urlfundo: 'url(./img/cenarios/fundoAreia.png)'
     },
     {
+        corTexto: '#ebebeb',
         corFundo: '#094258',
         urlfundo: 'url(./img/cenarios/fundoBarris.png)'
     },
     {
+        corTexto: '#000000',
         corFundo: '#a9553b',
         urlfundo: 'url(./img/cenarios/fundoTijolos.png)'
     },
     {
+        corTexto: '#000000',
         corFundo: '#6c737d',
         urlfundo: 'url(./img/cenarios/fundoPedra.png)'
     }
@@ -368,6 +373,7 @@ function proximaQuestao() {
     
     fundo_baixo.style.backgroundImage = cenarios[cenarioEscolido].urlfundo;
     document.body.style.backgroundColor = cenarios[cenarioEscolido].corFundo;
+    document.body.style.color = cenarios[cenarioEscolido].corTexto;
 
     clearInterval(verificarProximo);
 
