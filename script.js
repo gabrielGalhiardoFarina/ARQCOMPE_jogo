@@ -448,7 +448,7 @@ function ganharJogo() {
                 numerosPulos++;
             }
         }
-        if (numerosPulos >= 6) {
+        if (numerosPulos >= 15) {
             clearInterval(loop);
         }
 
@@ -459,4 +459,11 @@ function ganharJogo() {
     questao.style.display = 'none';
     opcoes.style.display = 'none';
 
+    document.body.style.backgroundColor = '#000000';
+    document.body.style.color = '#ffffff';
+    titulo.style.display = 'block';
+    fundo_baixo.style.backgroundImage = cenarios[0].urlfundo;
+    fundo_cima.style.backgroundColor = 'none';
+
+    video_container.style.display = 'block';
 }
