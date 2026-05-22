@@ -167,6 +167,30 @@ let jsonQuestoes = [
     }
 ];
 
+let cenarios = [
+    {
+        corFundo: '#87CEEB',
+        urlfundo: 'url(./img/cenarios/fundoGrama.svg)'
+    },
+    {
+        corFundo: '#01b7ff',
+        urlfundo: 'url(./img/cenarios/fundoAreia.png)'
+    },
+    {
+        corFundo: '#094258',
+        urlfundo: 'url(./img/cenarios/fundoBarris.png)'
+    },
+    {
+        corFundo: '#a9553b',
+        urlfundo: 'url(./img/cenarios/fundoTijolos.png)'
+    },
+    {
+        corFundo: '#6c737d',
+        urlfundo: 'url(./img/cenarios/fundoPedra.png)'
+    }
+
+]
+
 let tecla = {
     a: false,
     d: false
@@ -340,6 +364,11 @@ function proximaQuestao() {
     questaoAtual++;
     margem = 5;
     porcentagemTela = margem;
+    let cenarioEscolido = Math.floor(Math.random() * 4);
+    
+    fundo_baixo.style.backgroundImage = cenarios[cenarioEscolido].urlfundo;
+    document.body.style.backgroundColor = cenarios[cenarioEscolido].corFundo;
+
     clearInterval(verificarProximo);
 
     if (questaoAtual < jsonQuestoes.length) {

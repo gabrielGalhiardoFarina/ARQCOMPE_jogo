@@ -58,7 +58,7 @@ body {
 #fundo_baixo {
     height: 50dvh;
     width: 100%;
-    background-image: url(./img/fundoGrama.svg);
+    background-image: url(./img/cenarios/fundoGrama.svg);
     background-position: center;
     background-repeat: repeat-x;
     background-size: 50dvw;
@@ -131,4 +131,34 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 3000;
+}
+
+#seta_proxima{
+    width: 50%;
+    height: auto;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 20%;
+    animation: animacaoSeta 1s ease infinite;
+}
+
+@keyframes animacaoSeta {
+    0% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(10%);
+    }
+    40% {
+        transform: translateX(0);
+    }
+    60% {
+        transform: translateX(10%);
+    }
+    80% {
+        transform: translateX(0);
+    }   
+    100% {
+        transform: translateX(0);
+    }
 }
